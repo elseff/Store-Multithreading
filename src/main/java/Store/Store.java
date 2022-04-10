@@ -1,5 +1,9 @@
 package Store;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -10,8 +14,11 @@ import java.util.Random;
  * Store have a storage of products with a size 3.
  */
 @Slf4j
+@Getter
+@Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Store {
-    private List<Product> products;
+    List<Product> products;
 
     public Store() {
         products = new ArrayList<>();
@@ -45,14 +52,6 @@ public class Store {
         log.info(String.format("Producer has loaded a %s by %s price\n", product.getName(), product.getPrice()));
         getInfoAboutStorage();
         notify();
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 }
 

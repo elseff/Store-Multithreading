@@ -1,5 +1,10 @@
 package Store;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -8,12 +13,12 @@ import lombok.extern.slf4j.Slf4j;
  * otherwise Producer will wait.
  */
 @Slf4j
+@Getter
+@Setter
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Producer extends Thread {
     Store store;
-
-    public Producer(Store store) {
-        this.store = store;
-    }
 
     @Override
     public void run() {

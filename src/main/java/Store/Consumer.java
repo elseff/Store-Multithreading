@@ -1,5 +1,10 @@
 package Store;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -7,12 +12,12 @@ import lombok.extern.slf4j.Slf4j;
  * if on shop storage there isn't a products, Consumer will wait.
  */
 @Slf4j
+@Getter
+@Setter
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Consumer extends Thread {
-    Store store;
-
-    public Consumer(Store store) {
-        this.store = store;
-    }
+    final Store store;
 
     @Override
     public void run() {
