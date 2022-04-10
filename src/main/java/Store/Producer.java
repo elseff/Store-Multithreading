@@ -2,7 +2,11 @@ package Store;
 
 import lombok.extern.slf4j.Slf4j;
 
-//Производитель
+/**
+ * Producer can load the product to store
+ * if on the shop storage there is the place(3),
+ * otherwise Producer will wait.
+ */
 @Slf4j
 public class Producer extends Thread {
     Store store;
