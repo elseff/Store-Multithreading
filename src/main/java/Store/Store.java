@@ -1,10 +1,13 @@
 package Store;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 //Магазин
+@Slf4j
 public class Store {
     private List<Product> products;
 
@@ -13,9 +16,9 @@ public class Store {
     }
 
     public void getInfoAboutStorage() {
-        System.out.printf("Products on storage (%s) ", products.size());
-        products.forEach(e -> System.out.printf("%s(%s), ", e.getName(), e.getPrice()));
-        System.out.print(" - sum of prices: " + products.stream().mapToDouble(Product::getPrice).sum() + "\n\n");
+        log.info(String.format("Products on storage (%s) ", products.size()));
+        products.forEach(e -> log.info(String.format("%10s(%s), ", e.getName(), e.getPrice())));
+        log.info(String.format("sum of prices: %s\n", products.stream().mapToDouble(Product::getPrice).sum()));
     }
 
     public synchronized void get() throws InterruptedException {
@@ -23,8 +26,8 @@ public class Store {
             wait();
         }
         Product product = products.get(new Random().nextInt(products.size()));
-        System.out.printf("\tConsumer has bought a %s by %s price\n",
-                product.getName(), product.getPrice());
+        log.info(String.format("Consumer has bought a %s by %s price\n",
+                product.getName(), product.getPrice()));
         products.remove(product);
         getInfoAboutStorage();
         notify();
@@ -37,7 +40,7 @@ public class Store {
         Product product = new Product(NamesOfProducts.values()[new Random().
                 nextInt(NamesOfProducts.values().length)].name(), new Random().nextInt(100) + 100);
         products.add(product);
-        System.out.printf("\tProducer has loaded a %s by %s price\n", product.getName(), product.getPrice());
+        log.info(String.format("Producer has loaded a %s by %s price\n", product.getName(), product.getPrice()));
         getInfoAboutStorage();
         notify();
     }

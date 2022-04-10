@@ -1,6 +1,10 @@
 package Store;
+
+import lombok.extern.slf4j.Slf4j;
+
 //Потребитель
-public class Consumer extends Thread{
+@Slf4j
+public class Consumer extends Thread {
     Store store;
 
     public Consumer(Store store) {
@@ -16,6 +20,6 @@ public class Consumer extends Thread{
                 e.printStackTrace();
             }
         }
-        System.out.println("\tAll products has been bought");
+        log.info("All products has been bought");
     }
 }
