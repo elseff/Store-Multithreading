@@ -1,6 +1,10 @@
 package Store;
 
-//Производитель
+/**
+ * Producer can load the product to store
+ * if on the shop storage there is the place(3),
+ * otherwise Producer will wait.
+ */
 public class Producer extends Thread {
     Store store;
 
