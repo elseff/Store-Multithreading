@@ -1,6 +1,9 @@
 package Store;
 
+import lombok.extern.slf4j.Slf4j;
+
 //Производитель
+@Slf4j
 public class Producer extends Thread {
     Store store;
 
@@ -17,6 +20,6 @@ public class Producer extends Thread {
                 e.printStackTrace();
             }
         }
-        System.out.println("\tProduct has been loaded full");
+        log.info("Product has been loaded full");
     }
 }
