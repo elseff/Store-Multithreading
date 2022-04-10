@@ -1,11 +1,20 @@
 package Store;
-//Потребитель
-public class Consumer extends Thread{
-    Store store;
 
-    public Consumer(Store store) {
-        this.store = store;
-    }
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
+
+//Потребитель
+@Slf4j
+@Getter
+@Setter
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class Consumer extends Thread {
+    Store store;
 
     @Override
     public void run() {
