@@ -16,9 +16,10 @@ public class Store {
     }
 
     public void getInfoAboutStorage() {
-        log.info(String.format("Products on storage (%s) ", products.size()));
-        products.forEach(e -> log.info(String.format("%10s(%s), ", e.getName(), e.getPrice())));
-        log.info(String.format("sum of prices: %s\n", products.stream().mapToDouble(Product::getPrice).sum()));
+        log.debug("Products on storage ({}) ", products.size());
+        products.forEach(e -> log.info("{} ({}), ", e.getName(), e.getPrice()));
+        double sumOfPrices = products.stream().mapToDouble(Product::getPrice).sum();
+        log.debug("sum of prices: {}\n", sumOfPrices);
     }
 
     public synchronized void get() throws InterruptedException {
@@ -26,8 +27,8 @@ public class Store {
             wait();
         }
         Product product = products.get(new Random().nextInt(products.size()));
-        log.info(String.format("Consumer has bought a %s by %s price\n",
-                product.getName(), product.getPrice()));
+        log.info("Consumer has bought a {} by {} price\n",
+                product.getName(), product.getPrice());
         products.remove(product);
         getInfoAboutStorage();
         notify();
@@ -40,7 +41,7 @@ public class Store {
         Product product = new Product(NamesOfProducts.values()[new Random().
                 nextInt(NamesOfProducts.values().length)].name(), new Random().nextInt(100) + 100);
         products.add(product);
-        log.info(String.format("Producer has loaded a %s by %s price\n", product.getName(), product.getPrice()));
+        log.info("Producer has loaded a {} by {} price\n", product.getName(), product.getPrice());
         getInfoAboutStorage();
         notify();
     }
