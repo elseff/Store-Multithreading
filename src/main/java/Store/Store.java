@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-//Магазин
+/**
+ * Store have a storage of products with a size 3.
+ */
 public class Store {
     private List<Product> products;
 

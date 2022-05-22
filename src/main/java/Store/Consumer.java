@@ -1,5 +1,8 @@
 package Store;
-//Потребитель
+/**
+ * Consumer can buy a product if he there is on the shop storage,
+ * if on shop storage there isn't a products, Consumer will wait.
+ */
 public class Consumer extends Thread{
     Store store;
 
