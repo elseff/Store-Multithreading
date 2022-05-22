@@ -1,20 +1,18 @@
 package Store;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
 //Производитель
+@Data
 @Slf4j
-@Getter
-@Setter
-@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Producer extends Thread {
-    Store store;
+    final Store store;
 
     @Override
     public void run() {

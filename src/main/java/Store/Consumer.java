@@ -1,20 +1,15 @@
 package Store;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
 //Потребитель
+@Data
 @Slf4j
-@Getter
-@Setter
-@AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@EqualsAndHashCode(callSuper = true)
 public class Consumer extends Thread {
-    Store store;
+    final Store store;
 
     @Override
     public void run() {
